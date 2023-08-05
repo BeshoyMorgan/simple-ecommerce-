@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit],
+        input[type=reset] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        div{
+            padding-top: 40px;
+            width: 50%;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        margin: 20px auto;
+            border-radius: 40px;
+        }
+
+        span {
+            text-align: center;
+            color: red;
+            display: block;
+        }
+
+        
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h1>Log in</h1>
+        <form action="?">
+            <label for="mail">Email</label>
+            <input type="text" id="mail" name="mail" placeholder="Your Email..">
+            <span id="mailSpan"></span>
+            <label for="pass">Password</label>
+            <input type="password" id="pass" name="pass" placeholder="Your Password..">
+            <span id="passSpan"></span>
+            
+                <input type="checkbox" id="chb" checked>
+                <label>Remember Me</label>
+           <br>
+            <input type="submit" value="Submit" id="btn">
+            <input type="reset" value="reset">
+            <span id="err"></span>
+            <p style="margin-left: 10px;">Dont have an account?<a href="signUp.html">Sign Up</a></p>
+        </form>
+    </div>
+    <script type="module">
+        //////////////////////////////////////////////////////////config firebase
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        // Your web app's Firebase configuration
+        ////////////////////////////////////////////////////////////
+        var pass;
+        var mail;
+        var passSpan;
+        var mailSpan;
+        var chBox;
+        var err;
+        var test=false;
+        //console.log(obj)
+        window.addEventListener("load", function () {
+            pass = document.getElementById("pass");
+            mail = document.getElementById("mail");
+            passSpan = document.getElementById("passSpan");
+            mailSpan = document.getElementById("mailSpan");
+            err=document.getElementById("err");
+            // userName.focus();
+            chBox = document.getElementById("chb");
+        
+            ////////////// pass
+            pass.addEventListener("blur", function () {
+                if (!ispassValid()) {
+                    passSpan.innerText = "Weak Password";
+                    pass.style.border = '1px solid red';
+                }
+                else {
+                    passSpan.innerText = "";
+                    pass.style.borderColor = 'green';
+                }
+            });
+
+            //////////////////////////// mail
+            mail.addEventListener("blur", function () {
+                if (!ismailValid()) {
+                    mailSpan.innerText = "WRONG MAIL";
+                    mail.style.border = '1px solid red';
+                }
+                else {
+                    mailSpan.innerText = "";
+                    mail.style.borderColor = 'green';
+                }
+            })
+            ///////////////////submit
+            document.forms[0].addEventListener("submit", function (e) {
+                // Initialize Firebase
+                const firebaseConfig = {
+                    apiKey: "AIzaSyBWTXiy7k9X-u_PG1GtXt1oviLKmgBnzz4",
+                    authDomain: "jspro-7e24f.firebaseapp.com",
+                    databaseURL: "https://jspro-7e24f-default-rtdb.firebaseio.com",
+                    projectId: "jspro-7e24f",
+                    storageBucket: "jspro-7e24f.appspot.com",
+                    messagingSenderId: "625465824069",
+                    appId: "1:625465824069:web:d26bdc3911d3df188c642c"
+                };
+                if (!(ispassValid() && ismailValid())) {
+                    e.preventDefault();
+                }
+                else {
+                    e.preventDefault();
+                    const app = initializeApp(firebaseConfig);
+                    const auth = getAuth(app);
+                    signInWithEmailAndPassword(auth, mail.value, pass.value)
+                        .then((userCredential) => {
+                            // Signed in 
+                            const user = userCredential.user;
+                          
+                            test=true;
+
+                            // ...
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            
+                            var errMsg = errorMessage.split("/")[1].split(")")[0].replace("-"," ");
+                            err.innerText=errMsg;
+                            
+                        });
+
+                    if (chBox.checked) {
+                        localStorage.setItem("mail", mail.value);
+                        localStorage.setItem("pass", pass.value);
+                    }
+                    if(test==true){
+  //write the url of page
+                    window.location.href = "index.html";
+                  // document.forms[0].addEventListener("submit",()=>{});
+
+                    }
+                  
+                }
+            });
+            //reset
+            document.forms[0].addEventListener("reset", function () {
+                age.value = "";
+                mail.value = "";
+            });
+        });
+        ////////////////////validation functions
+        function isUsernameValid() {
+            var namePattern = /^[a-zA-Z]{4,8}$/;
+            return userName.value.match(namePattern);
+        }
+        function ispassValid() {
+            var passPattern = /^[0-9]{6,20}$/;
+            return pass.value.match(passPattern);
+        }
+        function ismailValid() {
+            var mailPattern = /^[a-z]{0,1}[a-zA-Z0-9]{4,8}(@)(yahoo|gmail|outlook)(.com)$/;
+            return mail.value.match(mailPattern);
+        }
+
+    </script>
+</body>
+
+</html>

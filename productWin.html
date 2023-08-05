@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="productWin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+
+    <div class="navbar">
+        <img src="images/logo.png" class="logo">
+
+        <nav>
+            <ul>
+                <li><a style="margin-left: 100px; " href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">collections</a></li>
+                <li><a href="#">category</a></li>
+                <a href="cart.html" class="shopp-cart"><i class="fa-solid fa-cart-shopping">
+                </i>Shopping Cart <span>0</span> </a>
+            </ul>
+        
+        </nav>
+    </div>
+
+    <div id="productDetails">
+
+    </div>
+
+
+
+
+
+    <script>
+
+        let productID = localStorage.getItem("id")
+        console.log(productID)
+
+        var productDetails = document.getElementById("productDetails")
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://dummyjson.com/products");
+        xhr.send();
+
+        var products, id, searchedProd, category, brand, images, title, description, price, discount, stock, rating;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // 3- response
+                var resJSON = xhr.response;
+                // 4-display
+                // 4-a convert to js obj
+                var response = JSON.parse(resJSON);
+                products = response.products
+
+                searchedProd = products.filter(function (product) {
+                    return product.id == productID
+                })
+                console.log(searchedProd[0])
+                category = searchedProd[0].category
+                brand = searchedProd[0].brand
+                images = searchedProd[0].images
+                title = searchedProd[0].title
+                price = searchedProd[0].price
+                discount = searchedProd[0].discountPercentage
+                stock = searchedProd[0].stock
+                description = searchedProd[0].description
+                rating = searchedProd[0].rating
+
+                productDetails.innerHTML += '<div class = "product"> <section id="secL"><p class="cat">Category: ' + category + ' </p> <p class = "brandName">Brand: ' + brand + '</p> <img src = ' + images[0] + ' class="imageSlide"/> <h2 class="prodTitle"> ' + title + '</h2></section>  <section id="secR"> <p class="proDescreption"> ' + description + '</p> <h3 class="price-disc"> Price: ' + (price - (price * discount / 100)).toFixed(2) + '$</h3> <h4 class="price"> <s> Price: ' + price + '$ </s></h4> <h5 class= "discount">Discount: ' + discount + '% </h5> <h4 class="stock">Available in stock: ' + stock + ' items.</h4> <h3 class="rate">Rating: ' + rating + '</br> <button id="cartBtn" onclick="addToCart('+searchedProd[0].id+',this)">Add to Cart</button></section></div>'
+            }
+        })    
+    </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

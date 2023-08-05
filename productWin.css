@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    width: 100%;
+    height: 15vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.3px solid lightgray;
+}
+
+.logo {
+    width: 160px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+nav {
+    flex: 1;
+    padding-left: 60px;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 0px 50px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+#productDetails {
+    background-color: lightgray;
+    position: relative;
+}
+
+.product {
+    margin: 20px 20px;
+}
+
+#secL {
+    float: left;
+    margin-left: 200px;
+    padding: 20px;
+    position: absolute;
+}
+
+.cat {
+    margin-left: -180px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.brandName {
+    margin-left: -180px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.imageSlide {
+    width: 350px;
+    height: 350px;
+    padding: px;
+}
+
+.prodTitle {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+#secR {
+    float: right;
+    margin-right: 15%;
+    margin-top: 5%;
+    padding: 20px;
+}
+
+.proDescreption{
+    width: 450px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.price-disc{
+    margin-top: 20px;
+    padding-top: 5px;
+}
+.price{
+    padding: 2px;
+    font-weight: 200;
+    color: grey;
+}
+.discount{
+    padding-bottom: 5px;
+    font-weight: 400;
+    font-size: 14px;
+    color: red;
+}
+
+.stock{
+    margin-top: 25px;
+    font-size: 16px;
+}
+.rate{
+    margin-top: 25px;
+    color: orangered;  
+}
+
+#cartBtn{
+    width:450px;
+    height: 30px;
+    text-align: center;
+    font-size: large;
+    font:bold;
+    font: optional;
+    margin-top: 25px;
+    background-color: rgb(137, 219, 252);
+    border-radius: 3px;
+    border-color: transparent;
+    cursor: pointer;
+}
+#cartBtn:hover{
+    transform: scale(1.05,1.05);
+    transition-duration: 0.5s;
+}
+.shopp-cart{
+    color: black;
+    text-decoration: none;
+}
+i{
+    font-size: 20px;
+    margin: 10px;
+}

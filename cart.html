@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="icon" href="./images/cart.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .navbar {
+            width: 100%;
+            margin: auto;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 160px;
+            cursor: pointer;
+        }
+
+        .counter {
+            margin: 10px;
+            position: relative;
+            right: 5px;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        i {
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        nav {
+            flex: 1;
+            padding-left: 60px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 0px 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .shopp-cart {
+            color: black;
+            text-decoration: none;
+        }
+
+        #container {
+            max-width: 144rem;
+            padding: 0 2rem;
+            margin: 0 auto;
+
+        }
+
+        #products {
+            margin: 20px;
+            padding: 10px;
+            gap: 32px;
+        }
+
+        .table {
+            width: 100%;
+            padding: 10px;
+            margin: 30px;
+            display: table;
+        }
+
+        .image {
+            width: 300px;
+            margin-right: 20px;
+        }
+        .product-title{
+            font-size: 25px;
+            position: relative;
+            bottom: 130px;
+
+
+        }
+
+        .header {
+            display: table-header-group;
+        }
+
+        .body {
+            display: table-row-group
+        }
+
+        .row {
+            display: table-row;
+        }
+
+        .cell {
+            display: table-cell;
+        }
+        .remove-btn{
+            background-color: #82AAE3;
+            width: 100px;
+            height: 30px;
+            border-radius: 20px;
+            padding: 5px;
+            border: none;
+        }
+        .remove-btn:hover{
+            background-color: #E1D7C6;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html"><img src="images/logo.png" class="logo"></a>
+        <nav>
+            <ul>
+                <li ><a style=" margin-left: 400px;"  href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">collections</a></li>
+                <li><a href="#">category</a></li>
+                <a  href="cart.html" class="shopp-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>Cart
+                    <span class="counter">0</span>
+                </a>
+            </ul>
+        </nav>
+        
+    </div>
+    <div id="container">
+        <div id="products">
+            <h3>Shopping Cart</h3>
+            <hr>
+            <div class="footer">
+                <div class="row">
+
+                </div>
+            </div>
+            <!-- <div class="caption">Shopping Cart</div>
+            <div class="header">
+                <div class="row">
+                    <div class="cell">Product</div>
+                    <div class="cell">Price</div>
+                    <div class="cell">Quantity</div>
+                    <div class="cell">Quantity</div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="cell">img title</div>
+                    <div class="cell">price</div>
+                    <div class="cell">button remove</div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="row">
+                    <div class="cell">SubTotal</div>
+                </div>
+            </div> -->
+
+            <!-- <div class="cart-titles">
+                <h2>Shopping Cart</h2> 
+                <h2>Price</h2> 
+                <h2>Quantity</h2> 
+            </div>
+            <hr> -->
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="cart.js"></script>
+</body>
+
+</html>
